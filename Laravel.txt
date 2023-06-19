@@ -3,7 +3,7 @@
 * composer create-project laravel/laravel projectname
 ---------------------------------------------------------------------------------------------------------
 					   * decumantion laravel*
-* https://laravel.com/   
+* https://laravel.com/      
 ---------------------------------------------------------------------------------------------------------
 						 " عشان ادخل على مشروع لارفيل "
 
@@ -11,7 +11,6 @@
 2- open vs code proggram- open termenal in vscode by " ctrl + ذ "- and write "php artisan ser (or) serve"    
 3- open browser -> write in url -> *(localhost/path of project/public)  or *(write localhost:8000)
 	or *(take link in terminal copy and put in url)
-4-dd
 ---------------------------------------------------------------------------------------------------------
 						  * عشان اعمل كريت يعنى اعمل انسيرت ف الداتا بيز ادخل داتا من فورم تسمع ف الداتا بيز *
  
@@ -72,10 +71,10 @@ class PostController extends Controller
 { public function store()
     {
         $Request = request()->all();
-        $Post = Post::create([
-            'title' => $Request['title'],
-            'description' => $Request['description'],
-            'Post_Creator' =>  $Request['Post_Creator'],
+        $Post = دا الموديل Post::create دى جلوبال هيلبر ميثود ([
+           دا الكولوم اللى ف الداتا بيز 'title' =>  ودا الريكوست ميثود بوست جايبلى كل الداتا اللى ف الفورم بتاعتى وهنا واخد منها التايتل بس هحطو ف عمود التايتل فى الداتا بيز $Request['title'],
+           دا الكولوم اللى ف الداتا بيز 'description' =>ودا الريكوست ميثود بوست جايبلى كل الداتا اللى ف الفورم بتاعتى وهنا واخد منها الديسكربشن بس هحطو ف عمود التايتل فى الداتا بيز $Request['description'],
+           دا الكولوم اللى ف الداتا بيز 'Post_Creator' => ودا الريكوست ميثود بوست جايبلى كل الداتا اللى ف الفورم بتاعتى وهنا واخد منها البوست كريتور بس بس هحطو ف عمود التايتل فى الداتا بيز $Request['Post_Creator'],
         ]);
 
         return redirect()->route('postsIndex');
@@ -114,6 +113,39 @@ class PostController extends Controller
 
                 </tr>
             @endforeach
+-------------------------------------------------------------------------------------
+*   select & option طريقة عرض بيانات من جدول وتظهر فى جدول تانى باستخدام *
+
+
+* controller *
+class PostController extends Controller
+{
+public function create()  دى الميثود المسؤلة عن الشغل ف الفيو اللى فيه الحاجة اللى انا شغال عليها فى الفيو 
+    { 
+        
+        $user = دا الموديل User::all(); كده انا مسكت الداتا كلها من جدول اليوزر 
+        return view("posts.create", compact('user')); كده انا بقولو روحلى عالروت دا وخدلى المتغير دا معاك 
+    }
+ }
+
+* view *
+<div class="form-group">
+            <label for="exampleFormControlInput1">Post Creator</label>
+            <select name="Post_Creator" class="form-control" id="exampleFormControlInput1">
+
+                @foreach ($user as $newUser) هنا بعمل لووووب ب فور ايتش عشان اظهر الداتا من جدول اليوزر 
+                    <option value={{ $newUser->name }}>{{ $newUser->name  هنا بقولو اظهرلى من كل العواميد اللى ف جدول اليوزر هاتلى النيم بس }}</option>
+                @endforeach
+
+                <select />
+        </div>
+-------------------------------------------------------------------------------------
+				* how to put files boatstrap on laravel project *
+* download boatstrap 
+* put folder boatstrab on (css-js) on public->assets
+* put css file call (bootstrap.min.css) at header like (  <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">  )
+* put js file call (bootstrap.min.js) at the end of body like (  <script src="{{ asset('assets/js/bootstrap.min.js') }}"> </script>  )
+
 
 
 
