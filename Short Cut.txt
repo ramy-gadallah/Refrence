@@ -36,3 +36,4 @@ ctrl + a -> select all text
 						 * windows *
 
 windows + shift + s -> screen shoot
+

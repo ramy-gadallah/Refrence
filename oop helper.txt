@@ -1,0 +1,733 @@
+
+				                      *class*
+
+class mobile
+{
+    public $ram; //declare attribute
+    public $name;
+    public $age;
+
+    public function say_welcome($x) //declare method
+    {
+        echo "welcome dear " . $x . "<br>";
+    }
+}	
+--------------------------------------------------------------------------------------------------------------------------------
+						        *object*
+
+$oppo = new mobile(); //object call oppo of class mobile 
+
+$oppo->ram = 22;
+$oppo->name = "object";
+echo ($oppo->say_welcome('osama'));
+--------------------------------------------------------------------------------------------------------------------------------
+							* (is_a )*
+
+-Glabal helper method used to know the object is instance from class or no 
+
+if (is_a($lab, 'mobile')) {
+    echo "The object is an instance of MyClass";
+} else {
+    echo "The object is not an instance of MyClass";
+}
+--------------------------------------------------------------------------------------------------------------------------------
+						         * $this * 
+
+class student
+{
+    public $ram;
+    public $name;
+    public $age;
+
+    public function say_welcome()
+    {
+        if ($this->name == 'nagy') {
+            echo 'welcome ' . $this->name ."<br>";
+        } else {
+            echo 'this name is not found';
+        }
+        //  بتاعو $this  دى ملهاش وجود معنى كده ان هوا عنصر زائف لو هوا موجود عندك يطلعلك ال $this سموها عنصر زائف عشان فعليا ملهاش وجود بتعتمد عالعنصر اللى انت بتنشأو لو الخواص دى مش موجوده $this 
+    }
+}
+
+$newUser_boy = new student();
+$newUser_boy->name = 'nagy'; // تانى اسم تانى خالص object  وهتبقى فى  name='nagy' للتانى يعنى هنا  object  ان قيمتها بتختلف من $this  فوق لما استخدمت معاها class اللى انا مستخدمها فوق انشأتها فى ال property  دى معناها ان 
+echo ($newUser_boy->say_welcome());    welcome ramy ال  وهتطبع =true اللى فوق method هنا ال 
+
+$newUser_girl = new student();
+$newUser_girl ->name = 'samy'; //             اللى فوق  object  وهتبقى مختلفة عن  name='samy' للتانى يعنى هنا  object  ان قيمتها بتختلف من $this  فوق لما استخدمت معاها class اللى انا مستخدمها فوق انشأتها فى ال property  دى معناها ان 
+echo ($newUser_girl->say_welcome());           this name is not found ال  وهتطبع =false اللى فوق method هنا ال 
+
+
+*الخلاصة*
+ 
+* للتانى object  وبتختلف بقى قيمتها من class داخل ال  property  بتعود على  $this  ان .
+* refere to current object 
+* current class يبقى انت بتتكلم عن  $this ->name ويحط فيها function  فى العالم هيستخدم ال object اى  $this->name بقولو class جديد من object  لما اجى اعمل 
+* use ($) because it represent a variable .
+--------------------------------------------------------------------------------------------------------------------------------
+							   *const*
+
+
+class mobile
+{
+    const RAM = '22';
+    public $ram;
+    public $name = "mazen";
+    public $age;
+
+    public function print_ram()
+    {
+        echo (self::RAM) . "<br>"; //   class جوا ال  const كده انا استدعيت ال 
+    }
+}
+
+$oppo = new mobile();
+echo ($oppo->print_ram());
+
+echo mobile::RAM . "<br>";  //   class عن طريق ال class بره ال  const كده انا استدعيت ال 
+echo $oppo::RAM;     //   Object عن طريق ال class بره ال  const كده انا استدعيت ال 
+
+* ملاحظات*
+
+* refere to current class .
+* object جديد انا بنشأو بالعكس قيمتها ثابتة فى اى object او براه يعنى مثلا قيمتها مبتغيرش مع كل class دى معناها ان قيمتها ثابته مينفعش تتغير فى اى مكان سواء جوا 
+* static members .
+* not use ($) but use (::)
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+							    * Argument مع ال  method طريقة ال *
+
+* object بتاعت ال  property بنتستحدم الطريقة دى عشان نعمل كزد مختصر فى سطر واحد بدل م اعد اعلن عن قيم لل 
+
+class mobile
+{
+
+    public function print_ram($r, $n)
+    {
+        $this->ram = $r;
+        $this->name = $n;
+
+        echo ('welcome ' . $r . " and you name is " . $n);
+    }
+}
+
+$opoo = new mobile();
+$var = $opoo->print_ram(23, 'oppo reno 5');
+echo $var;
+--------------------------------------------------------------------------------------------------------------------------------
+							     * visibility markers *
+
+* public : public بتبقى  by default  اى حاجة هيا  method , propertyليه من غير مشكلة ولو انا مكتبتش لل  extends تانى يكون عامل  class او من  class  تقدر تناديها من جوه ال  method , property بتناديها فى اى مكان لو انت عندك  .
+
+* protected : الاب والاب والابن تقدر تعمل جواهم كل حاجة انما بره لا  class من  extends اللى بيتعمل منه  class وجوا ال   class تقدر تعمل كل حاجة جوا ال 
+
+* private: private اللى واخده  property,method اللى هيورث منه الخواص ميقدرش يدخل على class  ال  private -> method , property الاب حاطت فيه  class لو 
+
+* private ومتقدرش يدخل على  protected  الابن لما يورث منه تقدر تدخل على  private وواحدة  protected واحدة  property -> الاب اللى فيه 2 
+
+--------------------------------------------------------------------------------------------------------------------------------
+							    *Encapsulation*
+
+class mobile
+{
+    public $ram;
+    private $name;  //private دى $name اللى اسمها property  ال 
+
+
+    public function print_ram($x)
+    {
+        $this->name = $x;
+        echo ("welcome " . $x . " dd");
+    }
+}
+
+$oppo = new mobile();
+public $ram;  // * public دى ينفع اغير فيها علطول واديلها قيمة عشان دى 
+$oppo->name="ramy" // # private واغير فيها علطول عشان  object عن طريق ال property كده غلط مينفعش استدعى ال 
+ انما مينفعش اغير فيها علطول private  ال  property عشان اغير قيمة method وبعدين استخدم ال  method واغير فيها براحتى ف ال method  اطلع احطها فى private اللى واخده property  طب الحل ايه بقا الحل ان ال 
+ 
+echo ($oppo->print_ram('marwan')); //دى method عن طريق ال  private ال property  كده انا بغير قيمة ال 
+echo ('<br>');
+$oppo->ram = 'mazen';   // public  علطول عشان property  هنا اقدر قيمة ال 
+echo $oppo->ram;
+
+--------------------------------------------------------------------------------------------------------------------------------
+                                                            * inhertance *
+
+class ramy     //الاب class 
+{
+    public $name;
+    public $age;
+
+    public function say_hello($n)
+    {
+        $this->name = $n;
+        echo "welcome " . $n;
+    }
+}
+
+$son_ramy = new ramy();  //  الاب class من object 
+echo ($son_ramy->say_hello('salah'));
+echo "<br>";
+
+class hazem extends ramy // جديدة تنزل ف الابن علطول على عكس الابن ممكن يكون فيه حاحات مش ف الاب  prperty,method  الاب وليه حاجات خاصة بيه لوحده يعنى ف حالة ان الاب اتحط فيه class اللى ف  property,method الاب بيورث نفس class الابن اللى بيورث من class 
+{
+    public $fuck; // دى خاصة بالابن بس مش موجودة ف الاب 
+    public function say_fuck($f) // الاب class الابن بس ومش موجوده فى class خاصة  بmethod دى  
+    {
+        $this->fuck = $f;
+        echo 'say fuck ' . $f;
+    }
+}
+$son_hazem = new hazem(); // الاب class الابن اللى بيورث من class جديد من الobject دا عبارة عن 
+echo ($son_hazem->say_hello('hazem')); //دى method  الاب ورث معاه class جديد (الابن) يورث من  class الاب لما عملت  class موجودة فى method دى 
+echo "<br>";
+
+$son_hazem->age = 'son father'; الاب class  دى خاصية جاية برضو من وراثة 
+echo $son_hazem->age;
+echo "<br>";
+echo ($son_hazem->say_fuck('walled')); // الاب class الابن بس ومش موجوده فى class خاصة  بmethod دى  
+--------------------------------------------------------------------------------------------------------------------------------
+                                                         *inhertance override *
+
+* (parent , main class , supper class)  تانى الابن مثلا بيبقى اسمه كدهclass الاب بتاعك اللى انت بتورث منه لأى class ال 
+* (child,subclass)  اللى بتورث من الاب classesكل دى اسامى ال 
+
+class parent  { 
+  public $name;
+  public $age;
+              }
+
+$object_ofClassparent = new parent();
+$object_ofClassparent->price=300    بس object  خاصة ب ال class جديد خارج ال property فوق دا معناه انى اقدر اعلن عن  class دى مش موجودة ف property بس ال  parent->class اللى واخد من object جديد جوه property هنا انا عملت 
+الاب بس class اللى خاص ب object  دى مش هتتورث لانها خاصة ب property  الاب طبعا ال class من class ل inhertance  ولما اجى اعمل 
+
+
+class child extends parent {
+
+public $name;
+public $age;
+
+			   }
+--------------------------------------------------------------------------------------------------------------------------------
+									* Final keyword *
+
+class ramy
+{
+    public $name;
+    public $age;
+
+   final public function say_hello($n) //   اقدر انى اغير فيها او العب فيها خالص  method يبقى دى اخر final -> method هنا مدام اديت لل 
+    {
+        $this->name = $n;
+        echo "welcome " . $n;
+    }
+}
+
+$son_ramy = new ramy();
+echo ($son_ramy->say_hello('salah'));
+echo "<br>";
+
+class hazem extends ramy
+{
+    public function say_hello($n) //   final مينفعش اجى استدعيها هنا وقولو غيرلى فيها او حتى انقلها ذى م هيا كده مدام واخده 
+    {
+        $this->name = $n;
+        echo "welcome  to " . $n;
+    }
+}
+
+$son_hazem = new hazem();
+echo ($son_hazem->say_hello('hazem')); // انى استخدمها بالشكل ده لا اكتر ولا اقل final واخدة  method كل اللى ينفع اعملو مدام ال 
+
+
+* final class ramy {
+
+			تانى منه class  من extends تانى ولا اعمل  class  مينفعش اورث منه فى اى final واخد  class مدام 
+	           }
+
+--------------------------------------------------------------------------------------------------------------------------------
+									 *abstraction class*
+
+
+
+abstract class ramy  //   عادى جدا  methods,property   بس وبيبقى جواه class  عبارة عن  object ده مينفعش انى اعمل منه  abstract class ال 
+{
+
+ * public function reed()  // عادية خالص ودى مبنستعملهاش هنا كده هيا تنفع تشتغل وكل حاجة بس مبنستعملهاش كده  method دى عبارة عن 
+    {
+        echo 'welcome echo';
+    }
+* public function write () // Have method without body code           // بتبقى عبارة عن اسم بس وفاضية ذى كده method يعنى ال 
+
+ * public function write () // مش لازم استدعيها  optional اللى تحت دى حاجة class  ده ابقى اديها وظيفة بقا وكونى استخدمها ف ال class  من ال  extend اللى هه class بعلن عنها هنا بالشكل دا من غير م اديها اى وظيفة وبعدين ف  method دى عبارة عن 
+
+    abstract public function ramy(); // ده class من ال  extend هه  class دى فى اى  method  يبقى لازم انى استخدم ال abstract واخدة method  انها هنا بقى مدام ال 
+
+}
+
+
+class hazem extends ramy
+{                               //  اللى فوق اعلن عنها فوق وانزل اديها وظيفة تحت هنا كده method  دى الطريقة الصحيحة بقا انى استخدم 
+
+    public function write (){
+        echo 'say welcome ramy';
+
+   
+}
+
+$son = new hazem();
+echo ($son->test());
+
+
+* force developer to follow your method 
+abstract واخده برضو  abstract class  جوا  method دى ف حالة انى عملت  method اللى شغالين ورايا انه يمشى على  developer يجبر ال  
+	-> abstract method:abstract class من extends  واخد class لازم تستخدمها عافية لما تنشأ 
+	-> العادية method:برضو بس مش شرط يستخدمها method بيورث ال 
+
+--------------------------------------------------------------------------------------------------------------------------------
+									* polymorphism تعدد الاوجه *
+
+
+* مع الحلاق والدكتور والممثل هيا نفس الكلمة بس بتختلف من مجال للتانى  cut مثال استخدام كلمة 
+
+* Have method without body code           // بتبقى عبارة عن اسم بس وفاضية ذى كده method يعنى ال 
+   public function write () 
+
+interface mobile   // class بيتعمل كده وبيبقى بره ال interface  عشان اعمل 
+{
+    public function pressHome();  // اسم بس  code بتبقى بالشكل ده كده من غير  class اللى جوا ال  method  دى ال 
+}
+
+
+class iphone implements mobile    // interface لل  implement مدام انا عملت  interface اللى جوا ال method  كده انا بقولو لازم حتما تستخدم كل ال   implements عن طريق كلمة interface بيستخدم ال  class دا 
+{
+    public $name;
+    public function pressHome() تانى تعمل حاجة تانية class  هنا بتعمل حاجة وف  class بس فى ال  interface اللى ف ال  method دى ال 
+    {
+        echo 'welcome iphone phone';
+    }
+}
+
+class sony implements mobile    // interface لل  implement مدام انا عملت  interface اللى جوا ال method  كده انا بقولو لازم حتما تستخدم كل ال   implements عن طريق كلمة interface بيستخدم ال  class دا 
+{
+    public $name;
+    public function pressHome() // تانى تعمل حاجة تانية خالص class  بس هنا بتعمل حاجة وفى  interface اللى ف  method هنا نفس ال 
+    {
+        echo 'welcome sony phone';
+    }
+}
+
+
+$sonIphone = new iphone();
+echo ($sonIphone->pressHome());  // هنا هتطبع حاجة 
+echo "<br>";
+
+$sonSony = new sony();
+echo ($sonSony->pressHome());  // وهنا هتعمل حاجة تانية خالص
+
+* بنفس الاسم بس دى بتعمل حاجة ودىبتعملحاجة تانية خالص method هيا نفس ال  method بتحتوى على  interface عبارة عن واجهه  
+* دى بس بتعمل وظائف مختلفة  function بيستخدم نفس ال  class  بس فى كل  implement جديد  class  دى ف اى method  ولازم اروح استدعى ال  method دى  interface  واحط ف  interface عبارة عن طريقة بتستخدم فيها  polymorphism  ال 
+
+--------------------------------------------------------------------------------------------------------------------------------
+						 	     * special method *
+							    * construct method *
+
+--- call when object is created .
+--- can be inheteted .
+
+class mobile
+{ //دى عافية حتى من غير م تستدعيها method  بينفذلك ال  construct_method اللى واخد  class من ال  object  بتساعدك انك م تنشأ  Global helper method عبارة عن
+    public function __construct($name, $age, $address )   // construct method can have arguments .
+    {
+        echo 'welcome ' . $name . ' your age is ' . $age . ' and your address is ' . $address;
+    }
+    public $ram;
+    public $name;
+    public $age;
+
+    public function say_welcome($r)
+    {
+	 $this->ram=$r;
+        echo "welcome dear " . $r . "<br>"; 
+    }
+}
+
+$oppo = new mobile('ramy', 22, 'tanta') //new object;  object تحت هنا بين القوسين اللى ف   argument فوق اجى احط ال  argument  هتشتغل علطول ف لو هيا فيها construct method  طبيعى ال  object  لما اجى انشا 
+
+--------------------------------------------------------------------------------------------------------------------------------
+								* special method *
+								      * call *
+
+* ف ممكن اعوض رسالة الخطا دى برسالة اعملها انا object اللى ف  method هيجبلى خطا لو جيت اطبع ال  class من   ال method وجيت مسحت  object  وعملت  منه class بتستخدم عشان تطلعلك رسالة بدل رسالة الخطا يعنى عند 
+
+
+class ramy
+{
+
+    public function __call($method, $param)
+		__call = بتاعتى  special method دى 
+		 $method = ( mohamed ) مثلا اللى هيا private الغلط اللى انا عاملها تحت او  method دى ال 
+		 $param = ('mazen','salah') array الغلط او اللى فيها مشكلة ولو عاوز اظهرهم بيظخرو ك  method اللى انا حاطتهم اصلا تحت فى ال  parameter دول ال 
+    {
+        echo 'the method call ' . $method . ' is not found';
+        echo '<br>';
+        echo '<pre>';
+        print_r($param);
+    }
+}
+
+$oppo = new ramy();
+echo ($oppo->mohamed('mazen', 'salah'))  // the method call mohamed is not found .
+Array
+(
+    [0] => mazen
+    [1] => salah
+)
+
+*ملحوظة*
+بس  method بتستخدم مع ال  call ال  
+
+--------------------------------------------------------------------------------------------------------------------------------
+									  * special method *
+									      *Get *
+
+* property بس بيتعاملو مع ال call  عاملين ذى ال 
+* class مش موجود ف ال  object من property بتستخدم لما اجى استدعى 
+
+class ramy
+{
+
+    public $age;
+
+    public function __get($property){
+		__get =  هيجبلك رسالة انت اللى حاطتها error ف بدل م يجبلك  رسالة فيها object وانت بتستدعيها تحت ف ال  class مش موجودة عندك فى ال  property اللى بتستخدم عشان تطلعلك رسالة لو ال special method دى ال 
+        echo $property.' property is not found';
+    }
+
+
+}
+
+$oppo = new ramy();
+echo ($oppo->address); // address property is not found
+
+
+									       *Set*
+
+class ramy
+{
+
+    public $age;
+    public function __set($name, $value)
+			__set =  parameter هيجبلك رسالة انت اللى حاطتها بس هنا بستخدم 2 error ف بدل م يجبلك  رسالة فيها object وانت بتستدعيها تحت ف ال  class مش موجودة عندك فى ال  property اللى بتستخدم عشان تطلعلك رسالة لو ال special method دى ال 
+    {
+        echo $name . ' property is not found and his value call ' . $value;
+    }
+}
+
+$oppo = new ramy();
+$oppo->work = 'father';
+
+	$name = work ; //اللى مش موجودة  property  دى ال 
+	$value =father // اللى مش موجودة اصلا property دى قيمة ال 
+
+--------------------------------------------------------------------------------------------------------------------------------
+								* static property and method *
+
+* object من غير م اعمل  class عاوز استدعيهم بره ال  method ,property عندى بتستخدم لما يبقى عندى  static method  ال 
+
+class ramy
+{
+
+    public static $ram = '22'; //property  كده مع ال static بستخدم ال 
+    public static function me() //class وكده مع ال 
+    {
+        return 'meeeeeeeeee';
+    }
+}
+
+echo ramy::$ram; // :: ودى  class بالشكل ده ب استخدام اسم ال class وبستدعيها بره ال 
+echo '<br>';
+echo ramy::me(); // :: ودى  class بالشكل ده ب استخدام اسم ال class وبستدعيها بره ال
+
+
+* معاها $ this  فمينفعش استخدم ال  object بتمنعك انك تعمل  static method  فتعود عليه واصلا ال  object اصلا بتستخدم لما يكون فيه  $this  لان ال  $this مينفعش استخدم جواها  static عندى هستخدم فيها method  اى 
+
+* جديد object جيت انا هنا مثلا عملت 
+  $object=new ramy ();
+
+* echo ($object->ram); مينفعش هيجبلى غلط static method واخدة  property وجيت استخدم  object لو انا عملت 
+* echo ($object->me()); هتشتغل عادى static method واخدة  method وجيت استخدم  object لو انا عملت 
+
+--------------------------------------------------------------------------------------------------------------------------------
+                                                                           * method chaining *
+
+
+وعاوز اطبعهم كلك ف خطوة واحدة من غير م اعد اطبع كل واحدة لوحدها اعمل الطريقة دى  class ف ال  method  وظيفتها انى لو عندى اكتر من 
+ class ramy
+{
+
+    public  function me()
+    {
+        echo 'meeeeeeeeee' . '<br>';
+        return $this;    // method لازم اكتب كده فى نهاية كل 
+    }
+    public  function you($max)
+    {
+        echo  $max . ' youuuuuuuuuuuuuuuuuuuu ' . '<br>';
+        return $this;  // method لازم اكتب كده فى نهاية كل 
+    }
+}
+
+$new = new ramy();
+$new->me()->you('fuck'); وبعدين اطبعهم بالشكل دخ 
+ $your_object -> methout(without pararmeter) -> method (with parametr) 
+
+--------------------------------------------------------------------------------------------------------------------------------
+									*trait*
+
+* single inhertance 
+ لكن ينفع اعمل كده  class parent extend child1,child2,child3  اب يعنى مينفعش اعمل كده  class  عشان اورث من  extend جديد يعنى تستخدم خاصية  class ف class مينفعش اورث اكتر من 
+ واحد بس  class  بيورث من  single inhertance بمعنى اصح ال class parent xtend child 
+
+* traits *
+
+  * write traits its possible for php classess to inherit method & property from muliable source 
+واحد بس  class ل  extend  بتعمل extends على عكس ال  class لاكتر من  property,method ل inherit جديد بعملو  class يمكن فى 
+
+  * you cannot extend or implement .
+interface مينفعش اعملو  interface اللى اسمو كذا مقدرش ونف القصة ف  class لل extend->traits واقولو  class يعنى مقدرش استخدم 
+
+  * you cannot instanciute 
+    object يعنى مقدر اخد منه او اعمل منه 
+
+  * traits its supporting class not replacing 
+ class مش معمول عشان يلغى ال  class معمول عشان يدعم ال  traits  ال 
+
+  *class can have method (function)
+
+  * have priorty over class
+  ليه الاولوية trait  طبعا ال  class او  traits ليه الاولوية يعنى لو انت استدعيت ال 
+                                                                      (مثال)
+
+
+trait MyFaeture  // trait دا 
+{
+    public function sayHello()  //trait جوا ال  method ودى 
+    {
+        echo '  welcome trait';
+    }
+}
+
+class appleDevice  // class دا 
+{
+    public function sayHello() // class جوا ال  method ودى 
+    {
+        echo '  welcome class';
+    }
+}
+
+class sony extends appleDevice  // aooleDevice -> class من  extend جديد ب  class دا 
+{
+    use MyFaeture;   // trait من ال  use ب class وال  
+}
+
+$test = new sony(); trait اللى ف ال   method هيطبع ال  method  والاثنين فيهم نفس ال  class,trait دا وارث من  class وال  class دا من  object جديد وال  object عملت 
+$test->sayHello();
+
+
+
+
+                                                   			(مثال)
+
+trait test  //   trait  وبعدين اسم ال  trait  بتكتب كلمة  trait طريقة كتابة ال 
+{
+    public $ram; //class عادى جدا ذى ال property فيه 
+    public $name; //class عادى جدا ذى ال property فيه 
+
+    public function test() // عادى جدا  method  فيه  
+    {
+        echo 'welcome dear';
+    }
+}
+
+
+trait fuck // تانى  trait دا 
+{
+    public function test1()
+    {
+        echo 'test 1';
+    }
+}
+
+
+class user // عادى جدا  class دا 
+{
+    use test_trait;     // class  جوا ال  trait  طريقة استخدام ال 
+    use test_trait1;    // class  جوا ال  trait  طريقة استخدام ال 
+}
+
+$test_object = new test(); //  class-> test جديد من  object كده عملت 
+
+echo $test_object->test(); // ده  class  من ال  object  واقدر استخدمها ف اى  class->user اتورثت وبقت ف  traits  اللى ف  method كده كل ال 
+echo '<br>';
+echo $test_object->name;   // ده  class  من ال  object  واقدر استخدمها ف اى  class->user اتورثت وبقت ف  traits  اللى ف  property كده كل ال 
+echo '<br>';
+echo $test_object->test1(); 
+
+(trait)             ->   class 
+(function trait)       (use trait)
+                            |
+                         (class use function trait)
+
+
+* فى سطر واحد class جوا ال trait اقددر استخدم اكتر من 
+    class test {
+
+use trait_1,trait_2,trait_3  // بدل م اكتبهم تحت بعضهم وتاخد مساحة كبيرة
+
+}
+
+
+* trait all
+{
+    use test_trait, test_trait1; // تقدر تورث من بعضها  trait ال 
+}
+
+*  return $this ب استخدام  chaining method واقدر استخدم ال 
+
+									*trait collision التضارب*
+
+	
+* هنا فيه مشكلة  method   والاتنين ليهم نفس اسم ال trait لو عندى 2 
+
+trait myfeature1
+{
+    function sayHello()  // متشابهه method  اسم ال 
+    {
+        echo 'welcome trait feature 1';
+    }
+}
+
+trait myfeature2
+{
+    function sayHello()  // متشابهه method  اسم ال 
+    {
+        echo 'welcome trait feature 2';
+    }
+}
+
+class sony
+{
+    use myfeature1, myfeature2 {
+
+        // trait Name number1 :: method Name insteadof trait Name number2 ;    
+        myfeature1::sayHello insteadof myfeature2;   //  التانى trait الاولانى بدل ال trait اللى ف ال method بقولو اطبعلى ال  insteadof دى الطريقة الاولى ب استخدام 
+
+        // trait Name number2 :: method Name as other method name ; 
+        myfeature2::sayHello as sayfuck; // خالص method  التانى بقولو غيرلى اسم ال  trait اللى ف ال method دى الطريقة الثانية عشان اطبع ال  
+    }
+}
+$object = new sony();
+$object->sayHello();
+echo '<br>';
+$object->sayfuck();
+
+--------------------------------------------------------------------------------------------------------------------------------
+									* name space *
+
+* App\hardware\pc .
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
