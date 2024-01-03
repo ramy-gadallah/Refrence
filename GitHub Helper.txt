@@ -1,4 +1,5 @@
 						"how to Upload a new peoject in Github" الحاجات دى بعملها عندى فى المشروع اول مره برفع المشروع بس 
+					       ___________________________________________________________________________________
 
 * Create a new repository on GitHub. You can do this by clicking on the "New" button on the main page of your GitHub account.
 * Give your repository a name and add a short description if desired.
@@ -14,6 +15,7 @@
 
 ______________________________________________________________________________________________________________________________________________________________________________
 						" how to update project in Github "
+					      ________________________________________
 
 - ( git add .)  or (git add " file name ")-> if you can to change file only not all file .
 - git commit -m "commit name ".
@@ -21,6 +23,7 @@ ________________________________________________________________________________
 
 ______________________________________________________________________________________________________________________________________________________________________________
 				               	" how to dowunlood project from github"
+					     ______________________________________________
 * first *
  - open project on github 
 * second *
