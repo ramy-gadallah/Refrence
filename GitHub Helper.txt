@@ -12,17 +12,23 @@
 5- git branch -M master
 6- git push -u origin master
 
-######################################################################################################################
+______________________________________________________________________________________________________________________________________________________________________________
 						" how to update project in Github "
 
 - ( git add .)  or (git add " file name ")-> if you can to change file only not all file .
 - git commit -m "commit name ".
 - git push 
 
-######################################################################################################################
+______________________________________________________________________________________________________________________________________________________________________________
 				               	" how to dowunlood project from github"
-* first open project on github 
-* second click code button and copy link 
-* third go the place you want downlood project and click git bash here
-* git clone "link you copy " 
-######################################################################################################################
+* first *
+ - open project on github 
+* second *
+- click code button and copy link 
+* third *
+- go the place you want downlood project and click git bash here
+* git clone "link you copy "
+-or-
+- click code then download ZIP. 
+
+______________________________________________________________________________________________________________________________________________________________________________
